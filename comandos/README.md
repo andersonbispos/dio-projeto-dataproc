@@ -19,12 +19,24 @@ gsutil cp ~/dio-desafio-dataproc/contador.py gs://andersonbispos-dio-bucket/
 ```
 - Criar o cluster dataproc (Haddop) - 1 master e 3 workers:
 ```
-gcloud beta dataproc clusters create cluster-dio-projeto-dataproc --enable-component-gateway --region us-central1 --zone us-central1-a --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 3 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --image-version 2.0-centos8 --optional-components JUPYTER,ZEPPELIN,ZOOKEEPER --project dio-dataproc-lab
+gcloud beta dataproc clusters \
+create cluster-dio-projeto-dataproc \
+--enable-component-gateway \
+--region us-central1 --zone us-central1-a \
+--master-machine-type n1-standard-2 \
+--master-boot-disk-size 500 --num-workers 3 \
+--worker-machine-type n1-standard-2 \
+--worker-boot-disk-size 500 --image-version 2.0-centos8 \
+--optional-components JUPYTER,ZEPPELIN,ZOOKEEPER \
+--project dio-dataproc-lab
 ```
 - Executar o contador.py
 
 ```
-gcloud dataproc jobs submit pyspark --region us-central1  --cluster=cluster-dio-projeto-dataproc gs://andersonbispos-dio-bucket/contador.py
+gcloud dataproc jobs submit pyspark \
+--region us-central1 \
+--cluster=cluster-dio-projeto-dataproc \
+gs://andersonbispos-dio-bucket/contador.py
 ```
 - Clonar o repositorio pra entrega do projeto no cloud shell:
 ```
